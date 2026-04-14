@@ -1,12 +1,55 @@
-.Titulo.principal {
+.TituloPrincipal{
         color: #ff0000;
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
     }
+
 
 body {
         
-        background-color:bisque
+background-color:bisque;
+font-family: 'Poppins', sans-serif;
+color: #333;
+font-size: 16px;
+
+}
+
+footer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+}
+    
+
+    
+
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #888;
+
+    }
+    .nav-links {
+        display: flex;
+        list-style:none;
+        gap: 52px;
+
+        
     }
 
-    .container {
-        background-color: white;
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .nav-links a:hover {
+        color: red;
     }
