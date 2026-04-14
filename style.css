@@ -1,12 +1,20 @@
+/* Elimina márgenes y padding por defecto del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .TituloPrincipal{
-        color: #ff0000;
-        font-family: 'Playfair Display', serif;
+        color: #333;
+        font-family: 'Raleway', sans-serif;
         font-size: 42px;
+        justify-content: left;
     }
 
 
-body {
-        
+
+    body {        
 background-color:bisque;
 font-family: 'Poppins', sans-serif;
 color: #333;
@@ -15,27 +23,58 @@ font-size: 16px;
 }
 
 footer {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
-    color: #888;
+    
+    font-size: 14px; /* tamaño de fuente */
+    color: #888; /* color del contenedor */
+    padding: 30px; /* Espacio entre el contenido */
+    text-align: center; /* Centra el texto */
+    background-color: #333;
+}
+/* Nav del footer - versión apagada del navbar principal */
+.footer-nav {
+    margin-top: 12px;
 }
 
-h2, h3 {
-    font-family: 'Playfair Display', serif;
+.footer-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 24px;
+}
+
+.footer-links a {
+    color: #aaa;        /* gris claro, apagado */
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+    color: #fff;        /* blanco al hover */
+}
+
+
+h1,h2, h3 {
+    font-family: 'Raleway', sans-serif;
     font-size: 42px;
 }
-    
 
-    
+/* Contenedor principal - limita el ancho y centra el contenido */
+.container {
+    max-width: 1200px; /* Ancho máximo en pantallas grandes */
+    margin: 0 auto;    /* Centra horizontalmente */
+    padding: 20px;     /* Espacio entre el contenido para que no quede pegado */
+}
 
-    .navbar {
+.navbar {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         background-color: #888;
+        padding: 16px 32px;
 
     }
-    .nav-links {
+
+.nav-links {
         display: flex;
         list-style:none;
         gap: 52px;
@@ -43,13 +82,123 @@ h2, h3 {
         
     }
 
-    .nav-links a {
+.nav-links a {
         color: white;
         text-decoration: none;
         font-weight: 600;
         font-size: 1.2rem;
     }
 
-    .nav-links a:hover {
-        color: red;
+.nav-links a:hover {
+        color: #333;
     }
+
+
+/* ===== FORMULARIO DE CONTACTO ===== */
+.formulario-contacto {
+    max-width: 600px;       /* no muy ancho */
+    margin: 40px auto;      /* centrado */
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;     /* bordes redondeados */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1); /* sombra suave */
+}
+
+/* Cada campo con su label */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.3s;  /* animación suave al enfocar */
+}
+
+/* Borde de color al hacer click en el campo */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #888;
+}
+
+/* Botón de enviar */
+.btn-enviar {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s; /* animación suave al hover */
+}
+
+.btn-enviar:hover {
+    background-color: #555;
+}
+
+/* ===== RESPONSIVE MOBILE (768px o menos) ===== */
+@media (max-width: 768px) {
+
+.TituloPrincipal{
+        
+        font-size: 32px;
+    }
+
+    /* Navbar en columna para mobile */
+    .navbar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+        width: 100%;
+    }
+
+    /* Links del nav en columna */
+    .nav-links {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    /* Contenedor ocupa todo el ancho en mobile */
+    .container {
+        padding: 12px;
+    }
+
+    /* Títulos más chicos en mobile */
+    h1, h2, h3 {
+        font-size: 28px;
+    }
+
+    /* Footer más compacto */
+    footer {
+        padding: 16px;
+        font-size: 0.75rem;
+        /* Footer nav en mobile */
+
+        .footer-links {
+    flex-direction: column;
+    gap: 10px;
+}
+    }
+    .formulario-contacto {
+    padding: 24px;
+    margin: 20px 16px;
+}
+}
