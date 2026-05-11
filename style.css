@@ -144,6 +144,57 @@ h1,h2, h3 {
     background: #555;
 }
 
+/* =========================
+   PRODUCTOS DESTACADOS (HOME)
+   ========================= */
+.productos-destacados {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 20px auto 40px;
+    max-width: 1200px;
+}
+
+.productos-destacados li {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.productos-destacados li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.productos-destacados a {
+    color: #222;
+    text-decoration: none;
+}
+
+.productos-destacados img {
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.productos-destacados h3 {
+    font-size: 17px;
+    margin: 10px 0;
+}
+
+.productos-destacados p {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
 /* ===== FORMULARIO DE CONTACTO ===== */
 .formulario-contacto {
     max-width: 600px;       
