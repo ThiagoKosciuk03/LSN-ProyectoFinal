@@ -1,5 +1,3 @@
-console.log("app.js cargado correctamente");
-
 function cargarProductos() {
     const productList = document.querySelector('.api');
 
@@ -16,11 +14,11 @@ function cargarProductos() {
                 const li = document.createElement('li');
 
                 li.innerHTML = `
-                    <a href="detalle.html?id=${product.id}">
+                    <a class="producto-link" href="detalle.html?id=${product.id}">
                         <img src="${product.image}" alt="${product.title}">
+                        <h3>${product.title}</h3>
+                        <p>Precio: $${product.price}</p>
                     </a>
-                    <h3>${product.title}</h3>
-                    <p>Precio: $${product.price}</p>
                     <button onclick="addToCart(${product.id})">Agregar al carrito</button>
                 `;
 
@@ -49,20 +47,24 @@ function cargarProductosDestacados() {
                 const li = document.createElement('li');
 
                 li.innerHTML = `
-                    <a href="pages/detalle.html?id=${product.id}">
+                    <a class="producto-link" href="pages/detalle.html?id=${product.id}">
                         <img src="${product.image}" alt="${product.title}" width="100">
+                        <h3>${product.title}</h3>
+                        <p>$${product.price.toFixed(2)}</p>
                     </a>
-                    <h3>${product.title}</h3>
-                    <p>$${product.price.toFixed(2)}</p>
                 `;
 
                 lista.appendChild(li);
             });
         })
         .catch(error => {
-            console.error("Error al cargar productos destacados:", error);
-            lista.innerHTML = "<p>Hubo un error al cargar los productos destacados.</p>";
+            console.error('Error al cargar productos destacados:', error);
+            lista.innerHTML = '<p>Hubo un error al cargar los productos destacados.</p>';
         });
+}
+
+function addToCart(idProducto) {
+    console.log('Producto agregado al carrito:', idProducto);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

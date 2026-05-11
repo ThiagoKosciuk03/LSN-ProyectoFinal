@@ -195,6 +195,18 @@ h1,h2, h3 {
     margin-top: 5px;
 }
 
+.producto-link {
+    color: #222;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto-link:hover {
+    color: #555;
+}
+
 /* ===== FORMULARIO DE CONTACTO ===== */
 .formulario-contacto {
     max-width: 600px;       
