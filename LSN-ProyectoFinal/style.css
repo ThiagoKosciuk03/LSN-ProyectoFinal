@@ -206,6 +206,10 @@ footer {
     border-radius: 12px;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .productos-destacados li:hover {
@@ -215,7 +219,7 @@ footer {
 
 /* Imagen destacada */
 .productos-destacados img {
-    height: 90px;
+    height: 100px;
     object-fit: contain; /* Mantiene proporción */
     margin-bottom: 10px;
 }

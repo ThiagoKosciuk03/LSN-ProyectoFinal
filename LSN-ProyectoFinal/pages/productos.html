@@ -40,24 +40,7 @@
     </nav>
 </footer>
 
-<script>
-    fetch('https://fakestoreapi.com/products')
-    .then(response => response.json())
-    .then(data => {
-        const productList = document.querySelector('.api');
-        productList.innerHTML = '';
-        data.forEach(product => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <img src="${product.image}" alt="${product.title}">
-                <h3>${product.title}</h3>
-                <p>Precio: $${product.price}</p>
-                <button onclick="addToCart(${product.id})">Agregar al carrito</button>
-            `;
-            productList.appendChild(li);
-        });
-    });
-</script>
+<script src="../app.js"></script>
 
 </body>
 </html>

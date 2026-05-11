@@ -7,75 +7,47 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body onload="cargarProductos()">
+
+<body>
   
- 
-  
-  <nav class="navbar">
-    <h1 class="TituloPrincipal">Comprando desde casa</h1>
-      <ul class="nav-links">
-  <li><a href="index.html">Inicio</a></li>
-  <li><a href="pages/productos.html">Productos</a></li>
-  <li><a href="pages/carrito.html">Carrito</a></li>
-  <li><a href="pages/contacto.html">Contacto</a></li>
-</ul>
-    </nav>
-    <main>
+    <nav class="navbar">
+        <h1 class="TituloPrincipal">Comprando desde casa</h1>
 
-
-
-<script>
-function cargarProductos() { //Define la función que se va a ejecutar automaticamnte    
-    fetch('https://fakestoreapi.com/products?limit=4') //Hace una request HTTTP a la API 
-    .then(response => response.json()) //Transforma la respuesta en JSON usable. JSON es un formato de datos, para transferir datos entre un servidor y aplicacion web
-    .then(data => { //Recibe los productos//
-        const lista = document.querySelector('.productos-destacados'); //Seleciona el ul donde se insertaran los productos
-
-        lista.innerHTML = ''; // limpia el contenido para evitar duplicados
-
-        data.forEach(product => { //itera cada producto//
-            const li = document.createElement('li'); //Crea elemnetos dinamicos
-            li.innerHTML = `
-                <img src="${product.image}" width="100">
-                <h3>${product.title}</h3>
-                <p>$${product.price.toFixed(2)}</p>
-            `;
-            lista.appendChild(li); // Lo agregamos como hijo, en este caso li
-        });
-    })
-    .catch(error => { //Captura errores 
-        console.error("Error al cargar productos:", error);
-    });
-}
-</script>
-
-    <div class="container">
-         
-        <p>Bienvenidos a nuestro sitio web Comprando desde casa.
-        Aquí encontrarás una amplia variedad de productos para satisfacer tus necesidades 
-        sin salir de tu hogar. 
-        </p>
-        
-    </div>
-
-    <h2>PRODUCTOS DESTACADOS</h2>
-<ul class="productos-destacados"></ul>
-    </main>
-<!--onload tiene 3 maneras de usarlo. Este evento se dispara cuando el HTML,CSS,Imágenes y recursos esten cargados-->
- <!--Manera de usarlo En el body, body onload="cargarProductos()" -->
-
-
-<footer>
-    <p>© 2026 Comprando desde casa - Todos los derechos reservados</p>
-    <nav class="footer-nav">
-        <ul class="footer-links">
+        <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="pages/productos.html">Productos</a></li>
             <li><a href="pages/carrito.html">Carrito</a></li>
             <li><a href="pages/contacto.html">Contacto</a></li>
         </ul>
     </nav>
-</footer>
-    
+
+    <main>
+        <div class="container">
+            <p>
+                Bienvenidos a nuestro sitio web Comprando desde casa.
+                Aquí encontrarás una amplia variedad de productos para satisfacer tus necesidades 
+                sin salir de tu hogar.
+            </p>
+        </div>
+
+        <h2>PRODUCTOS DESTACADOS</h2>
+
+        <ul class="productos-destacados"></ul>
+    </main>
+
+    <footer>
+        <p>© 2026 Comprando desde casa - Todos los derechos reservados</p>
+
+        <nav class="footer-nav">
+            <ul class="footer-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pages/productos.html">Productos</a></li>
+                <li><a href="pages/carrito.html">Carrito</a></li>
+                <li><a href="pages/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
