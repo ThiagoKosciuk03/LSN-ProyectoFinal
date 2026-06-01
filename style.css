@@ -14,23 +14,29 @@
 
 
 
-    body {        
-background-color:bisque;
-font-family: 'Poppins', sans-serif;
-color: #333;
-font-size: 16px;
+body {
+    background-color: bisque;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    font-size: 16px;
 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 footer {
-    
-    font-size: 14px; /* tamaño de fuente */
-    color: #888; /* color del contenedor */
-    padding: 30px; /* Espacio entre el contenido */
-    text-align: center; /* Centra el texto */
+    font-size: 14px;
+    color: #888;
+    text-align: center;
     background-color: #333;
+    padding: 16px;
 }
-/* Nav del footer - versión apagada del navbar principal */
+
 .footer-nav {
     margin-top: 12px;
 }
@@ -43,13 +49,13 @@ footer {
 }
 
 .footer-links a {
-    color: #aaa;        /* gris claro, apagado */
+    color: #aaa;
     text-decoration: none;
     font-size: 0.85rem;
 }
 
 .footer-links a:hover {
-    color: #fff;        /* blanco al hover */
+    color: #fff;
 }
 
 
@@ -266,6 +272,57 @@ h1,h2, h3 {
     background-color: #555;
 }
 
+.detalle-producto {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.precio {
+    font-size: 28px;
+    font-weight: bold;
+    color: green;
+}
+
+.detalle-contenido {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.detalle-imagen {
+    flex: 1;
+    text-align: center;
+}
+
+.detalle-imagen img {
+    max-width: 250px;
+    width: 100%;
+}
+
+.detalle-info {
+    flex: 2;
+}
+
+.btn-carrito {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-carrito:hover {
+    background: #555;
+}
+
 /* ===== RESPONSIVE MOBILE (768px o menos) ===== */
 @media (max-width: 768px) {
 
@@ -301,9 +358,9 @@ h1,h2, h3 {
 
     /* Footer más compacto */
     footer {
-        padding: 16px;
-        font-size: 0.75rem;
-        /* Footer nav en mobile */
+    padding: 16px;
+    font-size: 0.75rem;
+}
 
         .footer-links {
     flex-direction: column;
@@ -324,4 +381,4 @@ h1,h2, h3 {
         padding: 15px;
     }
 
-}
+
