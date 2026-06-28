@@ -1,12 +1,22 @@
-// =========================
-// CARGAR TODOS LOS PRODUCTOS
-// =========================
+
+// VARIABLES GLOBALES
+
+
+let carrito =
+    JSON.parse(localStorage.getItem("carrito")) || [];
+
+let productos = [];
+
+
+
+// PRODUCTOS
+
 
 function cargarProductos() {
 
-    const productList = document.querySelector('.api');
+    const productList =
+        document.querySelector('.api');
 
-    // Si la página no tiene la lista de productos, salir
     if (!productList) {
         return;
     }
@@ -15,48 +25,154 @@ function cargarProductos() {
         .then(response => response.json())
         .then(data => {
 
-            productList.innerHTML = '';
+            productos = data;
 
-            data.forEach(product => {
+            mostrarProductos(data);
 
-                const li = document.createElement('li');
+        })
+        .catch(error => {
 
-                li.innerHTML = `
-                    <a class="producto-link" href="detalle.html?id=${product.id}">
-                        <img src="${product.image}" alt="${product.title}">
-                        <h3>${product.title}</h3>
-                        <p>Precio: $${product.price}</p>
-                    </a>
+            console.error(
+                'Error al cargar productos:',
+                error
+            );
 
-                    <button onclick="addToCart(${product.id})">
-                        Agregar al carrito
-                    </button>
-                `;
+            productList.innerHTML =
+                '<p>Error al cargar productos.</p>';
 
-                productList.appendChild(li);
+        });
+
+}
+
+function mostrarProductos(listaProductos) {
+
+    const productList =
+        document.querySelector('.api');
+
+    if (!productList) {
+        return;
+    }
+
+    productList.innerHTML = '';
+
+    listaProductos.forEach(product => {
+
+        const li =
+            document.createElement('li');
+
+        li.innerHTML = `
+            <a
+                class="producto-link"
+                href="detalle.html?id=${product.id}">
+
+                <img
+                    src="${product.image}"
+                    alt="${product.title}">
+
+                <h3>${product.title}</h3>
+
+                <p>
+    Precio: $${product.price.toFixed(2)}
+</p>
+
+            </a>
+
+            <button
+                onclick="addToCart(${product.id})">
+
+                Agregar al carrito
+
+            </button>
+        `;
+
+        productList.appendChild(li);
+
+    });
+
+}
+
+
+
+// FILTRO CATEGORIAS
+function cargarCategorias() {
+
+    const filtro =
+        document.querySelector('#filtroCategoria');
+
+    if (!filtro) {
+        return;
+    }
+
+    fetch('https://fakestoreapi.com/products/categories')
+        .then(response => response.json())
+        .then(categorias => {
+
+            categorias.forEach(categoria => {
+
+                const option =
+                    document.createElement('option');
+
+                option.value = categoria;
+                option.textContent = categoria;
+
+                filtro.appendChild(option);
 
             });
 
         })
         .catch(error => {
 
-            console.error('Error al cargar los productos:', error);
-
-            productList.innerHTML =
-                '<p>Hubo un error al cargar los productos.</p>';
+            console.error(
+                'Error al cargar categorías:',
+                error
+            );
 
         });
 
 }
 
+function configurarFiltro() {
 
-// =========================
-// PRODUCTOS DESTACADOS HOME
-// =========================
+    const filtro =
+        document.querySelector('#filtroCategoria');
+
+    if (!filtro) {
+        return;
+    }
+
+    filtro.addEventListener('change', () => {
+
+        const categoria =
+            filtro.value;
+
+        if (categoria === "all") {
+
+            mostrarProductos(productos);
+
+        } else {
+
+            const productosFiltrados =
+                productos.filter(product =>
+                    product.category === categoria
+                );
+
+            mostrarProductos(productosFiltrados);
+
+        }
+
+    });
+
+}
+
+
+
+// PRODUCTOS DESTACADOS
+
 
 function cargarProductosDestacados() {
 
-    const lista = document.querySelector('.productos-destacados');
+    const lista =
+        document.querySelector('.productos-destacados');
 
     if (!lista) {
         return;
@@ -70,13 +186,25 @@ function cargarProductosDestacados() {
 
             data.forEach(product => {
 
-                const li = document.createElement('li');
+                const li =
+                    document.createElement('li');
 
                 li.innerHTML = `
-                    <a class="producto-link" href="pages/detalle.html?id=${product.id}">
-                        <img src="${product.image}" alt="${product.title}" width="100">
+                    <a
+                        class="producto-link"
+                        href="pages/detalle.html?id=${product.id}">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.title}"
+                            width="100">
+
                         <h3>${product.title}</h3>
-                        <p>$${product.price.toFixed(2)}</p>
+
+                        <p>
+                            $${product.price.toFixed(2)}
+                        </p>
+
                     </a>
                 `;
 
@@ -87,32 +215,34 @@ function cargarProductosDestacados() {
         })
         .catch(error => {
 
-            console.error('Error al cargar productos destacados:', error);
-
-            lista.innerHTML =
-                '<p>Hubo un error al cargar los productos destacados.</p>';
+            console.error(
+                'Error al cargar destacados:',
+                error
+            );
 
         });
 
 }
 
 
-// =========================
-// DETALLE DEL PRODUCTO
-// =========================
+
+// DETALLE PRODUCTO
+
 
 function cargarDetalleProducto() {
 
-    const contenedor = document.querySelector('#detalle-producto');
+    const contenedor =
+        document.querySelector('#detalle-producto');
 
     if (!contenedor) {
         return;
     }
 
-    // Obtener el ID desde la URL
-    const parametros = new URLSearchParams(window.location.search);
+    const parametros =
+        new URLSearchParams(window.location.search);
 
-    const id = parametros.get('id');
+    const id =
+        parametros.get('id');
 
     fetch(`https://fakestoreapi.com/products/${id}`)
         .then(response => response.json())
@@ -122,7 +252,9 @@ function cargarDetalleProducto() {
                 <div class="detalle-contenido">
 
                     <div class="detalle-imagen">
-                        <img src="${producto.image}" alt="${producto.title}">
+                        <img
+                            src="${producto.image}"
+                            alt="${producto.title}">
                     </div>
 
                     <div class="detalle-info">
@@ -138,7 +270,9 @@ function cargarDetalleProducto() {
                             ${producto.category}
                         </p>
 
-                        <p>${producto.description}</p>
+                        <p>
+                            ${producto.description}
+                        </p>
 
                         <button
                             class="btn-carrito"
@@ -159,40 +293,188 @@ function cargarDetalleProducto() {
             console.error(error);
 
             contenedor.innerHTML =
-                '<p>Error al cargar el producto.</p>';
+                '<p>Error al cargar producto.</p>';
 
         });
 
 }
 
 
-// =========================
-// AGREGAR AL CARRITO
-// =========================
+// CARRITO
+
 
 function addToCart(idProducto) {
 
-    console.log(
-        'Producto agregado al carrito:',
-        idProducto
+    carrito.push(idProducto);
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
     );
 
-    alert('Producto agregado al carrito');
+    alert("Producto agregado al carrito");
+
+}
+
+function cargarCarrito() {
+
+    const contenedor =
+        document.querySelector('#cargarCarrito');
+
+    const cantidad =
+        document.querySelector('#cantidad-productos');
+
+    const totalTexto =
+        document.querySelector('#total-carrito');
+
+    if (!contenedor) {
+        return;
+    }
+
+    contenedor.innerHTML = '';
+
+    let total = 0;
+
+    if (carrito.length === 0) {
+
+        contenedor.innerHTML =
+            '<h2>Tu carrito está vacío</h2>';
+
+        if (cantidad) {
+            cantidad.textContent =
+                'Cantidad de productos: 0';
+        }
+
+        if (totalTexto) {
+            totalTexto.textContent =
+                'Total: $0';
+        }
+
+        return;
+
+    }
+
+    carrito.forEach(id => {
+
+        fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(response => response.json())
+            .then(producto => {
+
+                total += producto.price;
+
+                const div =
+                    document.createElement('div');
+
+                div.classList.add('item-carrito');
+
+                div.innerHTML = `
+               <button
+    class="btn-eliminar"
+    onclick="eliminarProducto(${producto.id})">
+
+    Eliminar
+
+</button>
+                    <img
+                        src="${producto.image}"
+                        alt="${producto.title}">
+
+                    <div class="info-carrito">
+
+                        <h3>${producto.title}</h3>
+
+                        <p>
+                            Precio:
+                            $${producto.price.toFixed(2)}
+                        </p>
+
+                    </div>
+                `;
+
+                contenedor.appendChild(div);
+
+                if (cantidad) {
+
+                    cantidad.textContent =
+                        `Cantidad de productos: ${carrito.length}`;
+
+                }
+
+                if (totalTexto) {
+
+                    totalTexto.textContent =
+                        `Total: $${total.toFixed(2)}`;
+
+                }
+
+            });
+
+    });
+
+}
+
+function limpiarCarrito() {
+
+    carrito = [];
+
+    localStorage.removeItem("carrito");
+
+    cargarCarrito();
+
+    alert("Carrito vaciado");
 
 }
 
 
-// =========================
-// INICIO DE LA APLICACIÓN
-// =========================
+function eliminarProducto(idProducto) {
+
+    const indice =
+        carrito.indexOf(idProducto);
+
+    if (indice !== -1) {
+
+        carrito.splice(indice, 1);
+
+        localStorage.setItem(
+            "carrito",
+            JSON.stringify(carrito)
+        );
+
+        cargarCarrito();
+    }
+}
+
+function finalizarCompra() {
+
+    if (carrito.length === 0) {
+
+        alert("El carrito está vacío.");
+
+        return;
+
+    }
+
+    alert("¡Compra realizada con éxito!");
+
+    limpiarCarrito();
+
+}
+
+// INICIO
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    cargarProductos();
+ cargarProductos();
 
-    cargarProductosDestacados();
+cargarProductosDestacados();
 
-    cargarDetalleProducto();
+cargarDetalleProducto();
+
+cargarCarrito();
+
+cargarCategorias();
+
+configurarFiltro();
 
 });
-
